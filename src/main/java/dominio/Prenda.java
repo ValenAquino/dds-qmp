@@ -2,6 +2,8 @@ package dominio;
 
 import static java.util.Objects.requireNonNull;
 
+import excepciones.PrendaException;
+
 public class Prenda {
   TipoDePrenda tipoDePrenda;
   String material;
@@ -12,6 +14,10 @@ public class Prenda {
     this.tipoDePrenda = requireNonNull(tipoDePrenda, "'tipoDePrenda' es obligatorio");
     this.material = requireNonNull(material, "'materia' es obligatorio");
     this.colorPrimario = requireNonNull(colorPrimario, "'colorPrimario' es obligatorio");
+
+    if(material.equals("")) {
+       throw PrendaException.materialNoPuedeSerVacio();
+    }
   }
 
   public void setColorSecundario(Color colorSecundario) {
