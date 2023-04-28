@@ -15,12 +15,16 @@ public class Prenda {
     this.material = requireNonNull(material, "'materia' es obligatorio");
     this.colorPrimario = requireNonNull(colorPrimario, "'colorPrimario' es obligatorio");
 
-    if(material.equals("")) {
-       throw PrendaException.materialNoPuedeSerVacio();
+    if (material.equals("")) {
+      throw PrendaException.materialNoPuedeSerVacio();
     }
   }
 
   public void setColorSecundario(Color colorSecundario) {
     this.colorSecundario = colorSecundario;
+  }
+
+  public TipoDePrenda getTipoDePrenda() {
+    return tipoDePrenda;
   }
 }
