@@ -5,11 +5,10 @@ import dominio.Prenda;
 import excepciones.AtuendoException;
 
 public class ValidadorDeAtuendos {
-  public static void validarPrendas(Prenda parteSup, Prenda parteInf, Prenda calzado, Prenda accesorio) {
+  public static void validarPrendas(Prenda parteSup, Prenda parteInf, Prenda calzado) {
     validarPrenda(parteSup, Categoria.PARTE_SUPERIOR);
     validarPrenda(parteInf, Categoria.PARTE_INFERIOR);
     validarPrenda(calzado, Categoria.CALZADO);
-    validarPrenda(accesorio, Categoria.ACCESORIO);
   }
 
   public static void validarPrenda(Prenda unaPrenda, Categoria categoriaEsperada) {

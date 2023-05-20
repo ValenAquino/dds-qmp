@@ -6,14 +6,18 @@ public class Atuendo {
   Prenda parteSuperior;
   Prenda parteInferior;
   Prenda calzado;
-  Prenda accesorios;
+  Prenda accesorio;
 
-  Atuendo(Prenda parteSuperior, Prenda parteInferior, Prenda calzado, Prenda accesorios) {
-    ValidadorDeAtuendos.validarPrendas(parteSuperior, parteInferior, calzado, accesorios);
+  Atuendo(Prenda parteSuperior, Prenda parteInferior, Prenda calzado) {
+    ValidadorDeAtuendos.validarPrendas(parteSuperior, parteInferior, calzado);
     this.parteSuperior = parteSuperior;
     this.parteInferior = parteInferior;
     this.calzado = calzado;
-    this.accesorios = accesorios;
+  }
+
+  public void setAccesorios(Prenda accesorio) {
+    ValidadorDeAtuendos.validarPrenda(accesorio, Categoria.ACCESORIO);
+    this.accesorio = accesorio;
   }
 
 }
