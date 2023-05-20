@@ -1,0 +1,62 @@
+@startuml
+
+class Atuendo {
+  parteSuperior : Prenda
+  parteInferior : Prenda
+  calzado : Prenda
+  accesorios : Prenda
+  --
+  setAccesorio(Prenda prenda)
+}
+
+class Prenda {
+  tipoDePrenda : TipoDePrenda
+  material : String
+  colorPrimario : Color
+  colorSecundario : Color
+  --
+  setColorSecundario(Color color)
+}
+
+class Color {
+  red : int
+  green : int
+  blue : int
+}
+
+class TipoDePrenda {
+    categoria : Categoria
+}
+
+enum Categoria {
+  PARTE_SUPERIOR,
+  PARTE_INFERIOR,
+  CALZADO,
+  ACCESORIO
+}
+
+Atuendo --> Prenda
+
+Prenda --> TipoDePrenda
+Prenda --> Color
+
+TipoDePrenda --> Categoria
+
+class AtuendoExcepcion {
+  mensaje : String
+}
+
+class PrendaExcepcion {
+  mensaje : String
+}
+
+class ValidadorDeAtuendos {
+  validarPrendas(4 Prendas);
+}
+
+ValidadorDeAtuendos <.. Atuendo
+ValidadorDeAtuendos ..> AtuendoExcepcion
+
+PrendaExcepcion <.. Prenda
+
+@enduml
