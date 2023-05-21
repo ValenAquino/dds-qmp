@@ -30,22 +30,27 @@ public class AtuendoTest {
     naranjaClarito = new Color(255, 188, 66);
     azul = new Color(240, 248, 255);
 
-    remeraAzul = new Prenda(remera, "algodon", azul);
-    pantalonAzul = new Prenda(pantalon, "algodon", azul);
-    anteojosNaranja = new Prenda(anteojos, "plastico", naranjaClarito);
-    zapatillasNaranja = new Prenda(zapatillas, "cuero", naranjaClarito);
+    Material algodon = new Material(Trama.LISA);
+    Material plastico = new Material(Trama.LISA);
+    Material cuero = new Material(Trama.LISA);
+
+    remeraAzul = new Prenda(remera, algodon, azul);
+    pantalonAzul = new Prenda(pantalon, algodon, azul);
+    anteojosNaranja = new Prenda(anteojos, plastico, naranjaClarito);
+    zapatillasNaranja = new Prenda(zapatillas, cuero, naranjaClarito);
   }
 
   @Test
   public void seInstancianLasPrendasConTodosLosParametrosCorrectos() {
-    Atuendo unAtuendo = new Atuendo(remeraAzul, pantalonAzul, zapatillasNaranja, anteojosNaranja);
+    Atuendo unAtuendo = new Atuendo(remeraAzul, pantalonAzul, zapatillasNaranja);
+    unAtuendo.setAccesorios(anteojosNaranja);
     Assertions.assertNotNull(unAtuendo);
   }
 
   @Test
   public void laCategoriaSeCondiceConSuTipo() {
     Assertions.assertThrows(AtuendoException.class, () -> {
-      Atuendo unAtuendo = new Atuendo(anteojosNaranja, pantalonAzul, zapatillasNaranja, remeraAzul);
+      Atuendo unAtuendo = new Atuendo(anteojosNaranja, zapatillasNaranja, remeraAzul);
     });
   }
 }

@@ -1,0 +1,20 @@
+@startuml
+
+class AtuendoExcepcion {
+  mensaje : String
+}
+
+class PrendaExcepcion {
+  mensaje : String
+}
+
+class ValidadorDeAtuendos {
+  validarPrendas(4 Prendas);
+}
+
+ValidadorDeAtuendos <.. Atuendo
+ValidadorDeAtuendos ..> AtuendoExcepcion
+
+PrendaExcepcion <.. PrendaBorrador
+
+@enduml

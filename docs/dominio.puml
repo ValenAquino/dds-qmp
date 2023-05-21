@@ -1,0 +1,76 @@
+@startuml
+
+class Atuendo {
+  parteSuperior : Prenda
+  parteInferior : Prenda
+  calzado : Prenda
+  accesorios : Prenda
+  --
+  setAccesorio(Prenda prenda)
+}
+
+class Prenda {
+  tipoDePrenda : TipoDePrenda
+  material : Material
+  colorPrimario : Color
+  colorSecundario : Color
+  --
+  setColorSecundario(Color color)
+}
+
+class Color {
+  red : int
+  green : int
+  blue : int
+}
+
+class TipoDePrenda {
+  categoria : Categoria
+}
+
+enum Categoria {
+  PARTE_SUPERIOR,
+  PARTE_INFERIOR,
+  CALZADO,
+  ACCESORIO
+}
+
+class Material{
+  trama : Trama
+}
+
+enum Trama {
+  LISA,
+  RAYADA,
+  LUNARES,
+  CUADROS,
+  ESTAMPADO
+}
+
+Atuendo --> Prenda
+
+Prenda --> TipoDePrenda
+Prenda --> Color
+Prenda --> Material
+
+Material --> Trama
+
+TipoDePrenda --> Categoria
+
+class PrendaBorrador {
+  tipoDePrenda : TipoDePrenda
+  material : Material
+  colorPrimario : Color
+  colorSecundario : Color
+  --
+  setTipoDePrenda(TipoDePrenda unTipoDePrenda)
+  setMaterial(Material unMaterial)
+  setColorPrimario(Color unColor)
+  setColorSecundario(Color unColor)
+  --
+  build();
+}
+
+PrendaBorrador ..> Prenda
+
+@enduml
