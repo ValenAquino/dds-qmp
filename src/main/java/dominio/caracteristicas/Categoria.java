@@ -1,4 +1,4 @@
-package dominio;
+package dominio.caracteristicas;
 
 public enum Categoria {
   PARTE_SUPERIOR,

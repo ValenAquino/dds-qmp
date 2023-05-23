@@ -1,47 +1,35 @@
 package dominio;
 
+import dominio.caracteristicas.Categoria;
+import dominio.caracteristicas.Color;
+import dominio.caracteristicas.Material;
+import dominio.caracteristicas.TipoDePrenda;
+
 import excepciones.AtuendoException;
-import excepciones.PrendaException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class AtuendoTest {
-  static TipoDePrenda remera;
-  static TipoDePrenda pantalon;
-  static TipoDePrenda zapatillas;
-  static TipoDePrenda anteojos;
-
-  static Color naranjaClarito;
-  static Color azul;
-
   static Prenda remeraAzul;
   static Prenda pantalonAzul;
   static Prenda anteojosNaranja;
   static Prenda zapatillasNaranja;
 
+  static Color naranjaClarito = new Color(255, 188, 66);
+  static Color azul = new Color(240, 248, 255);
+
   @BeforeAll
   static void setUp() {
-    remera = new TipoDePrenda(Categoria.PARTE_SUPERIOR);
-    pantalon = new TipoDePrenda(Categoria.PARTE_INFERIOR);
-    zapatillas = new TipoDePrenda(Categoria.CALZADO);
-    anteojos = new TipoDePrenda(Categoria.ACCESORIO);
-
-    naranjaClarito = new Color(255, 188, 66);
-    azul = new Color(240, 248, 255);
-
-    Material algodon = new Material(Trama.LISA);
-    Material plastico = new Material(Trama.LISA);
-    Material cuero = new Material(Trama.LISA);
-
-    remeraAzul = new Prenda(remera, algodon, azul);
-    pantalonAzul = new Prenda(pantalon, algodon, azul);
-    anteojosNaranja = new Prenda(anteojos, plastico, naranjaClarito);
-    zapatillasNaranja = new Prenda(zapatillas, cuero, naranjaClarito);
+    remeraAzul = remeraAzul();
+    pantalonAzul = pantalonAzul();
+    anteojosNaranja = anteojosNaranja();
+    zapatillasNaranja = zapatillasNaranja();
   }
 
   @Test
-  public void seInstancianLasPrendasConTodosLosParametrosCorrectos() {
+  public void seInstancianLosAtuendosConTodosLosParametrosCorrectos() {
     Atuendo unAtuendo = new Atuendo(remeraAzul, pantalonAzul, zapatillasNaranja);
     unAtuendo.setAccesorios(anteojosNaranja);
     Assertions.assertNotNull(unAtuendo);
@@ -52,5 +40,33 @@ public class AtuendoTest {
     Assertions.assertThrows(AtuendoException.class, () -> {
       Atuendo unAtuendo = new Atuendo(anteojosNaranja, zapatillasNaranja, remeraAzul);
     });
+  }
+
+  public static Prenda anteojosNaranja() {
+    TipoDePrenda anteojos = new TipoDePrenda(Categoria.ACCESORIO);
+    return getPrenda(anteojos, Material.ALGODON, naranjaClarito);
+  }
+
+  public static Prenda zapatillasNaranja() {
+    TipoDePrenda zapatillas = new TipoDePrenda(Categoria.CALZADO);
+    return getPrenda(zapatillas, Material.ALGODON, naranjaClarito);
+  }
+
+  public static Prenda pantalonAzul() {
+    TipoDePrenda pantalon = new TipoDePrenda(Categoria.PARTE_INFERIOR);
+    return getPrenda(pantalon, Material.ALGODON, azul);
+  }
+
+  public static Prenda remeraAzul() {
+    TipoDePrenda remera = new TipoDePrenda(Categoria.PARTE_SUPERIOR);
+    return getPrenda(remera, Material.ALGODON, azul);
+  }
+
+  public static Prenda getPrenda(TipoDePrenda tipo, Material mat, Color col) {
+    Borrador borrador = new Borrador();
+    borrador.setTipoDePrenda(tipo);
+    borrador.setMaterial(mat);
+    borrador.setColorPrimario(col);
+    return borrador.build();
   }
 }

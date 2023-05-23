@@ -1,14 +1,14 @@
 package excepciones;
 
-import dominio.Categoria;
+import dominio.caracteristicas.Categoria;
 
-public class AtuendoException extends RuntimeException{
+public class AtuendoException extends RuntimeException {
   public AtuendoException(String mensaje) {
     super(mensaje);
   }
 
-  public static AtuendoException categoria(Categoria categoriaRecibida, Categoria categoriaEsperada) {
-    String msg = "Se recibio la categoria " + categoriaRecibida + " en vez de " + categoriaEsperada;
+  public static AtuendoException categoria(Categoria recibida, Categoria esperada) {
+    String msg = "Se recibio la categoria " + recibida + " en vez de " + esperada;
     return new AtuendoException(msg);
   }
 }

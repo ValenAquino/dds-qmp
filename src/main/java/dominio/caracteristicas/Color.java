@@ -1,4 +1,4 @@
-package dominio;
+package dominio.caracteristicas;
 
 public class Color {
   int red;

@@ -1,11 +1,12 @@
 package excepciones;
 
 public class PrendaException extends RuntimeException {
-  PrendaException(String mensaje) {
+  public PrendaException(String mensaje) {
     super(mensaje);
   }
 
-  public static PrendaException materialNoPuedeSerVacio() {
-    return new PrendaException("El material de la prenda no puede ser un string vacio");
+  public static PrendaException atributoNulo(String atributo) {
+    String msg = "El atributo " + atributo + "es obligatorio";
+    return new PrendaException(msg);
   }
 }
