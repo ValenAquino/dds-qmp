@@ -1,6 +1,6 @@
 package validaciones;
 
-import dominio.Categoria;
+import dominio.caracteristicas.Categoria;
 import dominio.Prenda;
 import excepciones.AtuendoException;
 

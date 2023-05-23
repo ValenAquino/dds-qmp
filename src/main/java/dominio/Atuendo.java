@@ -1,5 +1,6 @@
 package dominio;
 
+import dominio.caracteristicas.Categoria;
 import validaciones.ValidadorDeAtuendos;
 
 public class Atuendo {
