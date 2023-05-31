@@ -1,5 +1,6 @@
 package dominio;
 
+import dominio.sugerencias.MotorDeSugerencias;
 import java.util.ArrayList;
 import java.util.List;
 
