@@ -9,7 +9,7 @@ public class Atuendo {
   Prenda calzado;
   Prenda accesorio;
 
-  Atuendo(Prenda parteSuperior, Prenda parteInferior, Prenda calzado) {
+  public Atuendo(Prenda parteSuperior, Prenda parteInferior, Prenda calzado) {
     ValidadorDeAtuendos.validarPrendas(parteSuperior, parteInferior, calzado);
     this.parteSuperior = parteSuperior;
     this.parteInferior = parteInferior;

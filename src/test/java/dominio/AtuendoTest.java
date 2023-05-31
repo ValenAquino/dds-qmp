@@ -4,9 +4,7 @@ import dominio.caracteristicas.Categoria;
 import dominio.caracteristicas.Color;
 import dominio.caracteristicas.Material;
 import dominio.caracteristicas.TipoDePrenda;
-
 import excepciones.AtuendoException;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,20 +24,6 @@ public class AtuendoTest {
     pantalonAzul = pantalonAzul();
     anteojosNaranja = anteojosNaranja();
     zapatillasNaranja = zapatillasNaranja();
-  }
-
-  @Test
-  public void seInstancianLosAtuendosConTodosLosParametrosCorrectos() {
-    Atuendo unAtuendo = new Atuendo(remeraAzul, pantalonAzul, zapatillasNaranja);
-    unAtuendo.setAccesorios(anteojosNaranja);
-    Assertions.assertNotNull(unAtuendo);
-  }
-
-  @Test
-  public void laCategoriaSeCondiceConSuTipo() {
-    Assertions.assertThrows(AtuendoException.class, () -> {
-      Atuendo unAtuendo = new Atuendo(anteojosNaranja, zapatillasNaranja, remeraAzul);
-    });
   }
 
   public static Prenda anteojosNaranja() {
@@ -68,5 +52,19 @@ public class AtuendoTest {
     borrador.setMaterial(mat);
     borrador.setColorPrimario(col);
     return borrador.build();
+  }
+
+  @Test
+  public void seInstancianLosAtuendosConTodosLosParametrosCorrectos() {
+    Atuendo unAtuendo = new Atuendo(remeraAzul, pantalonAzul, zapatillasNaranja);
+    unAtuendo.setAccesorios(anteojosNaranja);
+    Assertions.assertNotNull(unAtuendo);
+  }
+
+  @Test
+  public void laCategoriaSeCondiceConSuTipo() {
+    Assertions.assertThrows(AtuendoException.class, () -> {
+      new Atuendo(anteojosNaranja, zapatillasNaranja, remeraAzul);
+    });
   }
 }

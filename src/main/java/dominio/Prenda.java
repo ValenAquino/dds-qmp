@@ -1,5 +1,6 @@
 package dominio;
 
+import dominio.caracteristicas.Categoria;
 import dominio.caracteristicas.Color;
 import dominio.caracteristicas.Material;
 import dominio.caracteristicas.TipoDePrenda;
@@ -12,12 +13,18 @@ public class Prenda {
   Material material;
   Trama trama;
   List<Color> colores;
+  boolean esFormal = false;
 
-  public Prenda(TipoDePrenda tipo, Material material, List<Color> colores, Trama trama) {
+  public Prenda(TipoDePrenda tipo, Material mat, List<Color> col, Trama trama, boolean esFormal) {
     this.tipoDePrenda = tipo;
-    this.material = material;
-    this.colores = colores;
+    this.material = mat;
+    this.colores = col;
     this.trama = trama;
+    this.esFormal = esFormal;
+  }
+
+  public boolean esFormal() {
+    return esFormal;
   }
 
   public TipoDePrenda getTipoDePrenda() {
@@ -32,10 +39,6 @@ public class Prenda {
     return trama;
   }
 
-  public List<Color> getColores() {
-    return colores;
-  }
-
   public Color getColorPrimario() {
     return colores.get(0);
   }
@@ -43,8 +46,12 @@ public class Prenda {
   public Color getColorSecundario() {
     if (colores.size() < 2) {
       throw new PrendaException("no hay colorSecundario");
+    } else {
+      return colores.get(1);
     }
+  }
 
-    return colores.get(1);
+  public Categoria getCategoria() {
+    return tipoDePrenda.getCategoria();
   }
 }

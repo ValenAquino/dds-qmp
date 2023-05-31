@@ -1,7 +1,5 @@
 package dominio;
 
-import static java.util.Objects.requireNonNull;
-
 import dominio.caracteristicas.Color;
 import dominio.caracteristicas.Material;
 import dominio.caracteristicas.TipoDePrenda;
@@ -15,6 +13,11 @@ public class Borrador {
   Material material;
   Trama trama = Trama.LISA;
   List<Color> colores = new ArrayList<>();
+  boolean esFormal;
+
+  public void setEsFormal(boolean esFormal) {
+    this.esFormal = esFormal;
+  }
 
   public void setTipoDePrenda(TipoDePrenda tipoDePrenda) {
     this.tipoDePrenda = ValidadorDePrendas.validarAtributo("tipoDePrenda", tipoDePrenda);
@@ -50,7 +53,7 @@ public class Borrador {
 
   public Prenda build() {
     ValidadorDePrendas.validarPrenda(tipoDePrenda, material, colores, trama);
-    return new Prenda(tipoDePrenda, material, colores, trama);
+    return new Prenda(tipoDePrenda, material, colores, trama, esFormal);
   }
 
 }

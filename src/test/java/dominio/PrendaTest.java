@@ -5,15 +5,13 @@ import dominio.caracteristicas.Color;
 import dominio.caracteristicas.Material;
 import dominio.caracteristicas.TipoDePrenda;
 import dominio.caracteristicas.Trama;
-
 import excepciones.PrendaException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class PrendaTest {
   TipoDePrenda remera = new TipoDePrenda(Categoria.PARTE_SUPERIOR);
@@ -38,8 +36,18 @@ public class PrendaTest {
 
     Assertions.assertEquals(remeraAzul.getTipoDePrenda(), remera);
     Assertions.assertEquals(remeraAzul.getMaterial(), Material.ALGODON);
-    Assertions.assertEquals(remeraAzul.getColores(), colores);
+    Assertions.assertEquals(remeraAzul.getColorPrimario(), azul);
     Assertions.assertEquals(remeraAzul.getTrama(), Trama.LISA);
+  }
+
+  @Test
+  public void noPuedoCrearPrendaSinColor() {
+    Assertions.assertThrows(PrendaException.class, () -> {
+      Borrador borrador = new Borrador();
+      borrador.setTipoDePrenda(remera);
+      borrador.setMaterial(Material.ALGODON);
+      Prenda unaPrenda = borrador.build();
+    });
   }
 
   @Test
