@@ -1,23 +1,20 @@
-package dominio;
+package dominio.atuendos;
 
-import dominio.caracteristicas.Color;
-import dominio.caracteristicas.Material;
-import dominio.caracteristicas.TipoDePrenda;
-import dominio.caracteristicas.Trama;
+import dominio.atuendos.caracteristicas.Color;
+import dominio.atuendos.caracteristicas.Formalidad;
+import dominio.atuendos.caracteristicas.Material;
+import dominio.atuendos.caracteristicas.TipoDePrenda;
+import dominio.atuendos.caracteristicas.Trama;
 import java.util.ArrayList;
 import java.util.List;
 import validaciones.ValidadorDePrendas;
 
 public class Borrador {
+  final List<Color> colores = new ArrayList<>();
   TipoDePrenda tipoDePrenda;
   Material material;
   Trama trama = Trama.LISA;
-  List<Color> colores = new ArrayList<>();
-  boolean esFormal;
-
-  public void setEsFormal(boolean esFormal) {
-    this.esFormal = esFormal;
-  }
+  Formalidad formalidad;
 
   public void setTipoDePrenda(TipoDePrenda tipoDePrenda) {
     this.tipoDePrenda = ValidadorDePrendas.validarAtributo("tipoDePrenda", tipoDePrenda);
@@ -51,9 +48,13 @@ public class Borrador {
     this.trama = ValidadorDePrendas.validarAtributo("trama", trama);
   }
 
+  public void setFormalidad(Formalidad formalidad) {
+    this.formalidad = ValidadorDePrendas.validarAtributo("formalidad", formalidad);
+  }
+
   public Prenda build() {
-    ValidadorDePrendas.validarPrenda(tipoDePrenda, material, colores, trama);
-    return new Prenda(tipoDePrenda, material, colores, trama, esFormal);
+    ValidadorDePrendas.validarPrenda(tipoDePrenda, material, colores, trama, formalidad);
+    return new Prenda(tipoDePrenda, material, colores, trama, formalidad);
   }
 
 }
