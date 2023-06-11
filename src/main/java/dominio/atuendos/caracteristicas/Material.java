@@ -1,4 +1,4 @@
-package dominio.caracteristicas;
+package dominio.atuendos.caracteristicas;
 
 public enum Material {
   ALGODON,

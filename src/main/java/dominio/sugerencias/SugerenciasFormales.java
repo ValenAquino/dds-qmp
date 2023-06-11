@@ -1,11 +1,12 @@
 package dominio.sugerencias;
 
-import dominio.Prenda;
+import dominio.atuendos.Prenda;
 import dominio.Usuario;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SugerenciasSegunFormalidad extends MotorDeSugerencias {
+public class SugerenciasFormales extends GeneradorDeSugerencias {
+
   @Override
   public List<Prenda> getPrendasValidas(Usuario usuario, List<Prenda> prendas) {
     if (usuario.getEdad() > 55) {

@@ -1,6 +1,6 @@
 package excepciones;
 
-import dominio.caracteristicas.Categoria;
+import dominio.atuendos.caracteristicas.Categoria;
 
 public class AtuendoException extends RuntimeException {
   public AtuendoException(String mensaje) {

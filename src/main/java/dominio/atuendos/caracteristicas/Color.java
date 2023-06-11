@@ -1,9 +1,9 @@
-package dominio.caracteristicas;
+package dominio.atuendos.caracteristicas;
 
 public class Color {
-  int red;
-  int green;
-  int blue;
+  final int red;
+  final int green;
+  final int blue;
 
   public Color(int red, int green, int blue) {
     this.red = red;

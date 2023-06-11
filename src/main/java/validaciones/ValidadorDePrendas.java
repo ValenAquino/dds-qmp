@@ -1,19 +1,23 @@
 package validaciones;
 
-import dominio.caracteristicas.Color;
-import dominio.caracteristicas.Material;
-import dominio.caracteristicas.TipoDePrenda;
-import dominio.caracteristicas.Trama;
+import dominio.atuendos.caracteristicas.Color;
+import dominio.atuendos.caracteristicas.Formalidad;
+import dominio.atuendos.caracteristicas.Material;
+import dominio.atuendos.caracteristicas.TipoDePrenda;
+import dominio.atuendos.caracteristicas.Trama;
 import excepciones.PrendaException;
 import java.util.List;
 
 public class ValidadorDePrendas {
 
-  public static void validarPrenda(TipoDePrenda tipo, Material mat, List<Color> cols, Trama tr) {
+  public static void validarPrenda(
+      TipoDePrenda tipo, Material mat, List<Color> cols, Trama tr, Formalidad fr
+  ) {
     validarAtributo("tipoDePrenda", tipo);
     validarAtributo("material", mat);
     validarColor("colores", cols);
     validarAtributo("trama", tr);
+    validarAtributo("formalidad", fr);
   }
 
   // <T> es para indicar que T es un tipo genérico,

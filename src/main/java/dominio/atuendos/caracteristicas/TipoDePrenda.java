@@ -1,7 +1,7 @@
-package dominio.caracteristicas;
+package dominio.atuendos.caracteristicas;
 
 public class TipoDePrenda {
-  Categoria categoria;
+  final Categoria categoria;
 
   public TipoDePrenda(Categoria categoria) {
     this.categoria = categoria;
