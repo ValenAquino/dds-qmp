@@ -1,7 +1,7 @@
 package dominio.sugerencias;
 
-import dominio.atuendos.Prenda;
 import dominio.Usuario;
+import dominio.atuendos.Prenda;
 import java.util.List;
 import java.util.stream.Collectors;
 

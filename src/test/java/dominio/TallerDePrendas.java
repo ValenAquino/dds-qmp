@@ -1,12 +1,12 @@
 package dominio;
 
+import dominio.atuendos.Borrador;
+import dominio.atuendos.Prenda;
 import dominio.atuendos.caracteristicas.Categoria;
 import dominio.atuendos.caracteristicas.Color;
 import dominio.atuendos.caracteristicas.Formalidad;
 import dominio.atuendos.caracteristicas.Material;
 import dominio.atuendos.caracteristicas.TipoDePrenda;
-import dominio.atuendos.Borrador;
-import dominio.atuendos.Prenda;
 
 public class TallerDePrendas {
 
