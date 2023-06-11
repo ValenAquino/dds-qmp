@@ -9,7 +9,7 @@
   <artifactId>ejercicio</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>ejercicio</name>
+  <name>dds-qmp</name>
   <url>https://github.com/dds-utn</url>
 
   <properties>
