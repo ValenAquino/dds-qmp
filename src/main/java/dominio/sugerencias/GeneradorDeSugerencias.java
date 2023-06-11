@@ -8,7 +8,7 @@ import dominio.atuendos.caracteristicas.Categoria;
 import java.util.List;
 import java.util.stream.Collectors;
 
-abstract public class GeneradorDeSugerencias implements MotorDeSugerencias {
+public abstract class GeneradorDeSugerencias implements MotorDeSugerencias {
 
   public List<Atuendo> generarSugerencias(Usuario usuario, List<Prenda> guardaRopas) {
     List<Prenda> prendasValidas = getPrendasValidas(usuario, guardaRopas);
@@ -28,6 +28,6 @@ abstract public class GeneradorDeSugerencias implements MotorDeSugerencias {
         .filter(p -> p.getCategoria().equals(categoria)).collect(Collectors.toList());
   }
 
-  abstract public List<Prenda> getPrendasValidas(Usuario usuario, List<Prenda> prendas);
+  public abstract List<Prenda> getPrendasValidas(Usuario usuario, List<Prenda> prendas);
 
 }
