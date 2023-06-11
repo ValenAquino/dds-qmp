@@ -1,7 +1,7 @@
 package validaciones;
 
-import dominio.Prenda;
-import dominio.caracteristicas.Categoria;
+import dominio.atuendos.Prenda;
+import dominio.atuendos.caracteristicas.Categoria;
 import excepciones.AtuendoException;
 
 public class ValidadorDeAtuendos {
