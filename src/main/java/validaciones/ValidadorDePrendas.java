@@ -5,19 +5,21 @@ import dominio.atuendos.caracteristicas.Formalidad;
 import dominio.atuendos.caracteristicas.Material;
 import dominio.atuendos.caracteristicas.TipoDePrenda;
 import dominio.atuendos.caracteristicas.Trama;
+import dominio.clima.Temperatura;
 import excepciones.PrendaException;
 import java.util.List;
 
 public class ValidadorDePrendas {
 
   public static void validarPrenda(
-      TipoDePrenda tipo, Material mat, List<Color> cols, Trama tr, Formalidad fr
+      TipoDePrenda tipo, Material mat, List<Color> cols, Trama tr, Formalidad fr, Temperatura t
   ) {
     validarAtributo("tipoDePrenda", tipo);
     validarAtributo("material", mat);
     validarColor("colores", cols);
     validarAtributo("trama", tr);
     validarAtributo("formalidad", fr);
+    validarAtributo("temperatura", t);
   }
 
   // <T> es para indicar que T es un tipo genérico,

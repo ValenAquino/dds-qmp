@@ -7,6 +7,7 @@ import dominio.atuendos.caracteristicas.Color;
 import dominio.atuendos.caracteristicas.Formalidad;
 import dominio.atuendos.caracteristicas.Material;
 import dominio.atuendos.caracteristicas.TipoDePrenda;
+import dominio.clima.Temperatura;
 
 public class TallerDePrendas {
 
@@ -40,6 +41,7 @@ public class TallerDePrendas {
     borrador.setMaterial(Material.ALGODON);
     borrador.setColorPrimario(col);
     borrador.setFormalidad(form);
+    borrador.setTemperatura(Temperatura.CALOR);
     return borrador.build();
   }
 }

@@ -6,7 +6,7 @@ public class PrendaException extends RuntimeException {
   }
 
   public static PrendaException atributoNulo(String atributo) {
-    String msg = "El atributo " + atributo + "es obligatorio";
+    String msg = "El atributo " + atributo + " es obligatorio";
     return new PrendaException(msg);
   }
 }

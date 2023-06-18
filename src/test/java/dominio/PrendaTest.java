@@ -8,6 +8,7 @@ import dominio.atuendos.caracteristicas.Formalidad;
 import dominio.atuendos.caracteristicas.Material;
 import dominio.atuendos.caracteristicas.TipoDePrenda;
 import dominio.atuendos.caracteristicas.Trama;
+import dominio.clima.Temperatura;
 import excepciones.PrendaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 public class PrendaTest {
   final TipoDePrenda remera = new TipoDePrenda(Categoria.PARTE_SUPERIOR);
   final Color azul = new Color(240, 248, 255);
+  final Color verde = new Color(0, 255, 0);
 
   @Test
   public void seInstancianLasPrendasConTodosLosParametrosCorrectos() {
@@ -55,6 +57,12 @@ public class PrendaTest {
   }
 
   @Test
+  public void puedoCrearPrendasConColorSecundario() {
+    Prenda remeraAzulConVerde = remeraAzulConVerde();
+    Assertions.assertEquals(verde, remeraAzulConVerde.getColorSecundario());
+  }
+
+  @Test
   public void siNoDefinoLaTramaPorDefectoEsLisa() {
     Prenda remeraAzulSinTrama = remeraAzulSinTrama();
 
@@ -63,6 +71,13 @@ public class PrendaTest {
 
   public Prenda remeraAzul() {
     Borrador borrador = remeraAzulSinTramaBorrador();
+    borrador.setTrama(Trama.LISA);
+    return borrador.build();
+  }
+
+  public Prenda remeraAzulConVerde() {
+    Borrador borrador = remeraAzulSinTramaBorrador();
+    borrador.setColorSecundario(verde);
     borrador.setTrama(Trama.LISA);
     return borrador.build();
   }
@@ -79,6 +94,7 @@ public class PrendaTest {
     borrador.setMaterial(Material.ALGODON);
     borrador.setColorPrimario(azul);
     borrador.setFormalidad(Formalidad.FORMAL);
+    borrador.setTemperatura(Temperatura.TEMPLADO);
 
     return borrador;
   }

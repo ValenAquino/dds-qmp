@@ -5,6 +5,7 @@ import dominio.atuendos.caracteristicas.Formalidad;
 import dominio.atuendos.caracteristicas.Material;
 import dominio.atuendos.caracteristicas.TipoDePrenda;
 import dominio.atuendos.caracteristicas.Trama;
+import dominio.clima.Temperatura;
 import java.util.ArrayList;
 import java.util.List;
 import validaciones.ValidadorDePrendas;
@@ -15,6 +16,7 @@ public class Borrador {
   Material material;
   Trama trama = Trama.LISA;
   Formalidad formalidad;
+  Temperatura temperatura;
 
   public void setTipoDePrenda(TipoDePrenda tipoDePrenda) {
     this.tipoDePrenda = ValidadorDePrendas.validarAtributo("tipoDePrenda", tipoDePrenda);
@@ -52,9 +54,15 @@ public class Borrador {
     this.formalidad = ValidadorDePrendas.validarAtributo("formalidad", formalidad);
   }
 
+  public void setTemperatura(Temperatura temperatura) {
+    this.temperatura = ValidadorDePrendas.validarAtributo("temperatura", temperatura);
+  }
+
   public Prenda build() {
-    ValidadorDePrendas.validarPrenda(tipoDePrenda, material, colores, trama, formalidad);
-    return new Prenda(tipoDePrenda, material, colores, trama, formalidad);
+    ValidadorDePrendas.validarPrenda(
+        tipoDePrenda, material, colores, trama, formalidad, temperatura
+    );
+    return new Prenda(tipoDePrenda, material, colores, trama, formalidad, temperatura);
   }
 
 }

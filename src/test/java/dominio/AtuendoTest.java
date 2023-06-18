@@ -31,6 +31,8 @@ public class AtuendoTest {
 
   @Test
   public void laCategoriaSeCondiceConSuTipo() {
-    Assertions.assertThrows(AtuendoException.class, () -> new Atuendo(anteojosNaranja, zapatillasNaranja, remeraAzul));
+    Assertions.assertThrows(
+        AtuendoException.class, () -> new Atuendo(anteojosNaranja, zapatillasNaranja, remeraAzul)
+    );
   }
 }
