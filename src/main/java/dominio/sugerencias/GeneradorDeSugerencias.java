@@ -5,14 +5,29 @@ import dominio.Usuario;
 import dominio.atuendos.Atuendo;
 import dominio.atuendos.Prenda;
 import dominio.atuendos.caracteristicas.Categoria;
+import dominio.clima.Clima;
+import dominio.clima.ServicioMeteorologico;
+import dominio.clima.Temperatura;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class GeneradorDeSugerencias implements MotorDeSugerencias {
+  ServicioMeteorologico servicioMeteorologico;
 
-  public List<Atuendo> generarSugerencias(Usuario usuario, List<Prenda> guardaRopas) {
-    List<Prenda> prendasValidas = getPrendasValidas(usuario, guardaRopas);
+  GeneradorDeSugerencias(ServicioMeteorologico servicioMeteorologico) {
+    this.servicioMeteorologico = servicioMeteorologico;
+  }
 
+  public abstract List<Prenda> getPrendasValidas(Usuario u, List<Prenda> p, Temperatura t);
+
+  public List<Atuendo> generarSugerencias(Usuario usr, List<Prenda> guardaRopas, String ciudad) {
+    Clima clima = servicioMeteorologico.getClima(ciudad);
+    List<Prenda> prendasValidas = getPrendasValidas(usr, guardaRopas, clima.getTemperatura());
+
+    return generarAtuendos(prendasValidas);
+  }
+
+  public List<Atuendo> generarAtuendos(List<Prenda> prendasValidas) {
     List<Prenda> superiores = filtrarCategorias(prendasValidas, Categoria.PARTE_SUPERIOR);
     List<Prenda> inferiores = filtrarCategorias(prendasValidas, Categoria.PARTE_INFERIOR);
     List<Prenda> calzados = filtrarCategorias(prendasValidas, Categoria.CALZADO);
@@ -27,7 +42,5 @@ public abstract class GeneradorDeSugerencias implements MotorDeSugerencias {
     return prendas.stream()
         .filter(p -> p.getCategoria().equals(categoria)).collect(Collectors.toList());
   }
-
-  public abstract List<Prenda> getPrendasValidas(Usuario usuario, List<Prenda> prendas);
 
 }
