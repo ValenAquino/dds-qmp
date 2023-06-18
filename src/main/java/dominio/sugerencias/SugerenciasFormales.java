@@ -16,7 +16,8 @@ public class SugerenciasFormales extends GeneradorDeSugerencias {
   @Override
   public List<Prenda> getPrendasValidas(Usuario usuario, List<Prenda> prendas, Temperatura temp) {
     if (usuario.getEdad() > 55) {
-      return prendas.stream().filter(p -> p.esFormal() && p.esApta(temp)).collect(Collectors.toList());
+      return prendas.stream()
+          .filter(p -> p.esFormal() && p.esApta(temp)).collect(Collectors.toList());
     } else {
       return prendas;
     }

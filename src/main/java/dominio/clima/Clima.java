@@ -5,7 +5,7 @@ public class Clima {
   Integer temperaturaCelcius;
   Temperatura temperatura;
 
-  Clima(Integer precipitacion, Integer temperaturaCelcius) {
+  public Clima(Integer precipitacion, Integer temperaturaCelcius) {
     this.precipitacion = precipitacion;
     this.temperatura = obtenerEstado(temperaturaCelcius);
   }

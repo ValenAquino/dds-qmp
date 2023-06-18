@@ -20,6 +20,10 @@ public class ServicioAccuWeather implements ServicioMeteorologico {
     this.tiempoDeValidez = tiempoDeValidez;
   }
 
+  public void setClima(Clima clima) {
+    this.clima = clima;
+  }
+
   @Override
   public Clima getClima(String ciudad) {
     if (this.clima == null || LocalDateTime.now().isAfter(this.proximaActualizacion)) {
