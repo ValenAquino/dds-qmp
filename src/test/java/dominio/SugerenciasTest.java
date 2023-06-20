@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import accuweather.AccuWeatherApi;
 import dominio.atuendos.Atuendo;
-import dominio.atuendos.Prenda;
+import dominio.atuendos.Guardarropas;
 import dominio.atuendos.caracteristicas.Categoria;
 import dominio.atuendos.caracteristicas.Formalidad;
 import dominio.clima.ServicioAccuWeather;
@@ -13,43 +13,38 @@ import dominio.sugerencias.MotorDeSugerenciasLocator;
 import dominio.sugerencias.SugerenciasBasicas;
 import dominio.sugerencias.SugerenciasFormales;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class SugerenciasTest {
-  private static List<Prenda> guardaRopasInformal;
-  private static List<Prenda> guardaRopasFormal;
   private static final String ciudad = "Buenos Aires";
+  private static Guardarropas guardaRopasInformal;
+  private static Guardarropas guardaRopasFormal;
   private static ServicioAccuWeather servicioMeteorologico;
 
   @BeforeAll
   static void setUp() {
-    guardaRopasInformal = new ArrayList<>();
-    guardaRopasInformal.add(TallerDePrendas.remeraAzul(Formalidad.INFORMAL));
-    guardaRopasInformal.add(TallerDePrendas.pantalonAzul(Formalidad.INFORMAL));
-    guardaRopasInformal.add(TallerDePrendas.anteojosNaranja(Formalidad.INFORMAL));
-    guardaRopasInformal.add(TallerDePrendas.zapatillasNaranja(Formalidad.INFORMAL));
+    guardaRopasInformal = TallerDePrendas.generarGuardarropasFormalidad(Formalidad.INFORMAL);
+    guardaRopasFormal = TallerDePrendas.generarGuardarropasFormalidad(Formalidad.FORMAL);
 
-    guardaRopasFormal = new ArrayList<>();
-    guardaRopasFormal.add(TallerDePrendas.remeraAzul(Formalidad.FORMAL));
-    guardaRopasFormal.add(TallerDePrendas.pantalonAzul(Formalidad.FORMAL));
-    guardaRopasFormal.add(TallerDePrendas.anteojosNaranja(Formalidad.FORMAL));
-    guardaRopasFormal.add(TallerDePrendas.zapatillasNaranja(Formalidad.FORMAL));
-
-    Duration tiempoDeValidez = Duration.ofSeconds(0);
-    AccuWeatherApi api = new AccuWeatherApi();
-    servicioMeteorologico = new ServicioAccuWeather(api, ciudad, tiempoDeValidez);
+    servicioMeteorologico = new ServicioAccuWeather(
+        new AccuWeatherApi(), ciudad, Duration.ofSeconds(0)
+    );
   }
 
   @Test
   public void testGenerarSugerenciasSugerenciasBasicas() {
     SugerenciasBasicas sugerenciasBasicas = new SugerenciasBasicas(servicioMeteorologico);
     MotorDeSugerenciasLocator localizador = new MotorDeSugerenciasLocator(sugerenciasBasicas);
-    Usuario usuario = new Usuario(30, guardaRopasInformal, localizador);
 
-    List<Atuendo> sugerencias = usuario.generarSugerencias(ciudad);
+    Usuario usuario = new Usuario(30, localizador);
+    usuario.agregarGuardarropas(guardaRopasInformal);
+
+    List<Atuendo> sugerencias = usuario.generarSugerencias(
+        ciudad, usuario.getGuardarropas().get(0).getPrendas()
+    );
+
     Atuendo atuendo = sugerencias.get(0);
 
     assertEquals(1, sugerencias.size());
@@ -62,9 +57,14 @@ public class SugerenciasTest {
   public void testGenerarSugerenciasSugerenciasFormales() {
     SugerenciasFormales sugerenciasFormales = new SugerenciasFormales(servicioMeteorologico);
     MotorDeSugerenciasLocator localizador = new MotorDeSugerenciasLocator(sugerenciasFormales);
-    Usuario usuario = new Usuario(60, guardaRopasFormal, localizador);
 
-    List<Atuendo> sugerencias = usuario.generarSugerencias(ciudad);
+    Usuario usuario = new Usuario(60, localizador);
+    usuario.agregarGuardarropas(guardaRopasFormal);
+
+    List<Atuendo> sugerencias = usuario.generarSugerencias(
+        ciudad, usuario.getGuardarropas().get(0).getPrendas()
+    );
+
     Atuendo atuendo = sugerencias.get(0);
 
     assertEquals(1, sugerencias.size());
@@ -77,9 +77,13 @@ public class SugerenciasTest {
   public void sugerenciasFormalesSinRopaFormalDevuelveListaVacia() {
     SugerenciasFormales sugerenciasFormales = new SugerenciasFormales(servicioMeteorologico);
     MotorDeSugerenciasLocator localizador = new MotorDeSugerenciasLocator(sugerenciasFormales);
-    Usuario usuario = new Usuario(60, guardaRopasInformal, localizador);
 
-    List<Atuendo> sugerencias = usuario.generarSugerencias(ciudad);
+    Usuario usuario = new Usuario(60, localizador);
+    usuario.agregarGuardarropas(guardaRopasInformal);
+
+    List<Atuendo> sugerencias = usuario.generarSugerencias(
+        ciudad, usuario.getGuardarropas().get(0).getPrendas()
+    );
 
     assertEquals(0, sugerencias.size());
   }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Guardarropas {
   List<Prenda> prendas = new ArrayList<>();
-  List<Propuesta> propuestas = new ArrayList<Propuesta>();
+  List<Propuesta> propuestas = new ArrayList<>();
 
   public void agregarPrenda(Prenda prenda) {
     prendas.add(prenda);
@@ -16,4 +16,7 @@ public class Guardarropas {
     prendas.remove(prenda);
   }
 
+  public List<Prenda> getPrendas() {
+    return prendas;
+  }
 }
