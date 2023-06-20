@@ -1,6 +1,7 @@
 package dominio;
 
 import dominio.atuendos.Borrador;
+import dominio.atuendos.Guardarropas;
 import dominio.atuendos.Prenda;
 import dominio.atuendos.caracteristicas.Categoria;
 import dominio.atuendos.caracteristicas.Color;
@@ -35,7 +36,7 @@ public class TallerDePrendas {
     return getPrenda(remera, azul, form);
   }
 
-  private static Prenda getPrenda(TipoDePrenda tipo, Color col, Formalidad form) {
+  public static Prenda getPrenda(TipoDePrenda tipo, Color col, Formalidad form) {
     Borrador borrador = new Borrador();
     borrador.setTipoDePrenda(tipo);
     borrador.setMaterial(Material.ALGODON);
@@ -44,4 +45,14 @@ public class TallerDePrendas {
     borrador.setTemperatura(Temperatura.CALOR);
     return borrador.build();
   }
+
+  public static Guardarropas generarGuardarropasFormalidad(Formalidad formalidad) {
+    Guardarropas guardarropas = new Guardarropas();
+    guardarropas.agregarPrenda(TallerDePrendas.anteojosNaranja(formalidad));
+    guardarropas.agregarPrenda(TallerDePrendas.zapatillasNaranja(formalidad));
+    guardarropas.agregarPrenda(TallerDePrendas.pantalonAzul(formalidad));
+    guardarropas.agregarPrenda(TallerDePrendas.remeraAzul(formalidad));
+    return guardarropas;
+  }
+
 }
