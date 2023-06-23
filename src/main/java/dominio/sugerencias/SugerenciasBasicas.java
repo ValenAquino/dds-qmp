@@ -15,7 +15,7 @@ public class SugerenciasBasicas extends GeneradorDeSugerencias {
 
   @Override
   public List<Prenda> getPrendasValidas(Usuario usuario, List<Prenda> prendas, Temperatura temp) {
-    return prendas.stream().filter(p -> p.esApta(temp)).collect(Collectors.toList());
+    return prendas;
   }
 
 }
