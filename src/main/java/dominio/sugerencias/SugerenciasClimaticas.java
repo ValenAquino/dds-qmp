@@ -6,20 +6,16 @@ import dominio.clima.ServicioMeteorologico;
 import dominio.clima.Temperatura;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class SugerenciasFormales extends GeneradorDeSugerencias {
-
-  public SugerenciasFormales(ServicioMeteorologico servicioMeteorologico) {
+public class SugerenciasClimaticas extends GeneradorDeSugerencias {
+  public SugerenciasClimaticas(ServicioMeteorologico servicioMeteorologico) {
     super(servicioMeteorologico);
   }
 
   @Override
   public List<Prenda> getPrendasValidas(Usuario usuario, List<Prenda> prendas, Temperatura temp) {
-    if (usuario.getEdad() > 55) {
-      return prendas.stream().filter(Prenda::esFormal).collect(Collectors.toList());
-    } else {
-      return prendas;
-    }
+    Stream<Prenda> prendasFiltradas = prendas.stream().filter(p -> p.esApta(temp));
+    return prendasFiltradas.collect(Collectors.toList());
   }
-
 }
